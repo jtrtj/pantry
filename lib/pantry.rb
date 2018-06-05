@@ -6,6 +6,7 @@ class Pantry
   def initialize
     @stock         = Hash.new(0)
     @shopping_list = {}
+    @cookbook      = []
   end
 
   def stock_check(item)
@@ -28,5 +29,8 @@ class Pantry
       list.concat("*#{item[0]}: #{item[1]}\n")
       list
     end
+  end
+
+  def add_to_cookbook
   end
 end
