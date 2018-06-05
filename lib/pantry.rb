@@ -34,4 +34,17 @@ class Pantry
   def add_to_cookbook(recipe)
     @cookbook << recipe
   end
+
+  # def what_can_i_make
+  #   @cookbook.map do |recipe|
+  #     if recipe.ingredient_types
+  # end
+
+  def ingredients_present?(recipe)
+    recipe.ingredient_types.none? do |type|
+     stock_check(type) < recipe.amount_required(type)
+     end
+    # binding.pry
+  end
+
 end
