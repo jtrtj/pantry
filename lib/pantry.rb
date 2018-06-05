@@ -22,4 +22,11 @@ class Pantry
       quantity + new_quantity
     end
   end
+
+  def print_the_shopping_list
+    shopping_list.inject("") do |list, item|
+      list.concat("*#{item[0]}: #{item[1]}\n")
+      list
+    end
+  end
 end
