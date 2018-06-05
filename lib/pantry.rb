@@ -17,8 +17,9 @@ class Pantry
   end
 
   def add_to_shopping_list(recipe)
-    @shopping_list = recipe.ingredients.merge(shopping_list) do |key, value, new_value|
-      value + new_value
+    @shopping_list =
+    recipe.ingredients.merge(shopping_list) do |ingredient, quantity, new_quantity|
+      quantity + new_quantity
     end
   end
 end
