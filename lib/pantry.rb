@@ -31,6 +31,7 @@ class Pantry
     end
   end
 
-  def add_to_cookbook
+  def add_to_cookbook(recipe)
+    @cookbook << recipe
   end
 end
