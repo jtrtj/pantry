@@ -36,11 +36,9 @@ class Pantry
   end
 
   def what_can_i_make
-    @cookbook.map do |recipe|
-      if ingredients_present?(recipe)
-        recipe.name
-      end
-    end.compact
+    recipes_i_can_make.map do |recipe|
+      recipe.name
+    end
   end
 
   def recipes_i_can_make
