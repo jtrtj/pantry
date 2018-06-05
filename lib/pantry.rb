@@ -43,9 +43,23 @@ class Pantry
     end.compact
   end
 
+  def recipes_i_can_make
+    @cookbook.map do |recipe|
+      if ingredients_present?(recipe)
+        recipe
+      end
+    end.compact
+  end
+
+  def how_many_can_i_make
+    recipes_i_can_make.map do |recipe|
+      [recipe.name, (stock_check(recipe.most_required)) / recipe.most_required_amount]
+    end.to_h
+  end
+
   def ingredients_present?(recipe)
     recipe.ingredient_types.none? do |type|
-     stock_check(type) < recipe.amount_required(type)
+     stock_check(type) < recipe.most_required_amount
      end
   end
 

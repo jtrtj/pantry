@@ -27,4 +27,18 @@ class RecipeTest < Minitest::Test
     r.add_ingredient("Flour", 500)
     assert_equal 500, r.amount_required("Flour")
   end
+
+  def test_it_can_tell_you_which_ingredient_requires_the_most
+    r1 = Recipe.new("Cheese Pizza")
+    r1.add_ingredient("Cheese", 20)
+    r1.add_ingredient("Flour", 20)
+
+    r2 = Recipe.new("Pickles")
+    r2.add_ingredient("Brine", 10)
+    r2.add_ingredient("Cucumbers", 30)
+    assert_equal 'Flour', r1.most_required
+    assert_equal 'Cucumbers', r2.most_required
+    assert_equal 20, r1.most_required_amount
+    assert_equal 30, r2.most_required_amount
+  end
 end
