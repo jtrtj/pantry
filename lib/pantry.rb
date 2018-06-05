@@ -52,9 +52,10 @@ class Pantry
   end
 
   def how_many_can_i_make
-    recipes_i_can_make.map do |recipe|
-      [recipe.name, (stock_check(recipe.most_required)) / recipe.most_required_amount]
-    end.to_h
+    recipes_i_can_make.inject({}) do |list, recipe|
+      list[recipe.name] = (stock_check(recipe.most_required)) / recipe.most_required_amount
+      list
+    end
   end
 
   def ingredients_present?(recipe)
