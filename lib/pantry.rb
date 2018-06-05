@@ -24,6 +24,10 @@ class Pantry
     end
   end
 
+  def add_to_cookbook(recipe)
+    @cookbook << recipe
+  end
+
   def print_the_shopping_list
     shopping_list.inject("") do |list, item|
       list.concat("*#{item[0]}: #{item[1]}\n")
@@ -31,20 +35,18 @@ class Pantry
     end
   end
 
-  def add_to_cookbook(recipe)
-    @cookbook << recipe
+  def what_can_i_make
+    @cookbook.map do |recipe|
+      if ingredients_present?(recipe)
+        recipe.name
+      end
+    end.compact
   end
-
-  # def what_can_i_make
-  #   @cookbook.map do |recipe|
-  #     if recipe.ingredient_types
-  # end
 
   def ingredients_present?(recipe)
     recipe.ingredient_types.none? do |type|
      stock_check(type) < recipe.amount_required(type)
      end
-    # binding.pry
   end
 
 end

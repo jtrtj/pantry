@@ -102,9 +102,8 @@ class PantryTest < Minitest::Test
   end
 
   def test_pantry_can_return_list_of_recipes_it_has_ingredients_for
-    skip
     pantry = Pantry.new
-    # Building our recipe
+
     r1 = Recipe.new("Cheese Pizza")
     r1.add_ingredient("Cheese", 20)
     r1.add_ingredient("Flour", 20)
@@ -117,13 +116,10 @@ class PantryTest < Minitest::Test
     r3.add_ingredient("Raw nuts", 10)
     r3.add_ingredient("Salt", 10)
 
-
-    # Adding the recipe to the cookbook
     pantry.add_to_cookbook(r1)
     pantry.add_to_cookbook(r2)
     pantry.add_to_cookbook(r3)
 
-    # Stock some ingredients
     pantry.restock("Cheese", 10)
     pantry.restock("Flour", 20)
     pantry.restock("Brine", 40)
@@ -131,7 +127,7 @@ class PantryTest < Minitest::Test
     pantry.restock("Raw nuts", 20)
     pantry.restock("Salt", 20)
 
-    # What can I make?
-    pantry.what_can_i_make # => ["Pickles", "Peanuts"]
+    assert_equal ["Pickles", "Peanuts"], pantry.what_can_i_make
   end
+  
 end
